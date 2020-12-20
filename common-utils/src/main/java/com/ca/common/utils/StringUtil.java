@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 
 public class StringUtil {
 
-    public String arrayToString(String[] strArray, String splitFlag) {
+    public static String arrayToString(String[] strArray, String splitFlag) {
         String tmpString = "";
         if (strArray.length == 0) {
             tmpString = "";
@@ -34,7 +34,7 @@ public class StringUtil {
         return tmpString;
     }
 
-    public String arrayToString2(String[] strArray, String splitFlag) {
+    public static String arrayToString2(String[] strArray, String splitFlag) {
         String tmpString = "";
         if (strArray.length == 0) {
             tmpString = "''";
@@ -65,7 +65,7 @@ public class StringUtil {
             return "";}
     }
 
-    public boolean isNumeric(String strData, boolean dotFlag) {
+    public static boolean isNumeric(String strData, boolean dotFlag) {
         if (strData == null) {
             return false;
         }

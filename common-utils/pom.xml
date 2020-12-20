@@ -6,12 +6,12 @@
         <groupId>com.ca</groupId>
         <artifactId>forum-common</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <artifactId>common-utils</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>common-utils</name>
+    <packaging>pom</packaging>
     <description>utils for common</description>
 
     <properties>

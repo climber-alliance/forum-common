@@ -13,6 +13,7 @@
     <artifactId>forum-common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>forum-common</name>
+    <packaging>pom</packaging>
     <description>common project</description>
 
     <properties>
