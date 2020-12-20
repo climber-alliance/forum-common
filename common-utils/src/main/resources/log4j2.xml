@@ -64,7 +64,6 @@
     </Appenders>
 
     <Loggers>
-
         <Root level="TRACE"> <!-- 这里的TRACE控制总下面的各类日志的日志级别,凡是高于此级别的都会在各自的级别文件中生成-->
             <AppenderRef ref="RollingFile" />
             <AppenderRef ref="Console" />

@@ -1,9 +1,5 @@
 package com.ca.common.utils;
 
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -17,14 +13,12 @@ import java.util.regex.Pattern;
  * <p> 字符串处理工具类 </p>
  *
  * @author zz
- * @version StrUtils.java 2020.06.27
+ * @version StringUtil.java 2020.06.27
  **/
 
-public class StrUtils {
+public class StringUtil {
 
-    public static Logger LOG = LoggerFactory.getLogger(StrUtils.class);
-
-    public String ArrayToString(String[] strArray, String splitFlag) {
+    public String arrayToString(String[] strArray, String splitFlag) {
         String tmpString = "";
         if (strArray.length == 0) {
             tmpString = "";
@@ -40,7 +34,7 @@ public class StrUtils {
         return tmpString;
     }
 
-    public String ArrayToString2(String[] strArray, String splitFlag) {
+    public String arrayToString2(String[] strArray, String splitFlag) {
         String tmpString = "";
         if (strArray.length == 0) {
             tmpString = "''";
@@ -60,15 +54,15 @@ public class StrUtils {
         String value = new String();
         int start = 0;
         int end = 0;
-        if (fileName == null)
-            return null;
+        if (fileName == null){
+            return null;}
         start = fileName.lastIndexOf(46) + 1;
         end = fileName.length();
         value = fileName.substring(start, end);
-        if (fileName.lastIndexOf(46) > 0)
-            return value;
-        else
-            return "";
+        if (fileName.lastIndexOf(46) > 0){
+            return value;}
+        else{
+            return "";}
     }
 
     public boolean isNumeric(String strData, boolean dotFlag) {
@@ -78,15 +72,15 @@ public class StrUtils {
         char[] numbers = strData.toCharArray();
         for (int i = 0; i < numbers.length; i++) {
             if (dotFlag) {
-                if (!Character.isDigit(numbers[i]))
-                    return false;
+                if (!Character.isDigit(numbers[i])){
+                    return false;}
             } else {
-                if (!Character.isDigit(numbers[i]) && numbers[i] != '.')
-                    return false;
+                if (!Character.isDigit(numbers[i]) && numbers[i] != '.'){
+                    return false;}
             }
         }
-        if (strData.lastIndexOf(46) != strData.indexOf(46))
-            return false;
+        if (strData.lastIndexOf(46) != strData.indexOf(46)){
+            return false;}
         return true;
     }
 
@@ -120,7 +114,7 @@ public class StrUtils {
         return strChinese;
     }
 
-    public static String Replace(String source, String oldString,
+    public static String replace(String source, String oldString,
                                  String newString) {
         StringBuffer output = new StringBuffer();
 
@@ -142,7 +136,7 @@ public class StrUtils {
         return output.toString();
     }
 
-    public static String Left(String sourceString, int nLength) {
+    public static String left(String sourceString, int nLength) {
         if (sourceString == null || sourceString == ""
                 || sourceString.length() <= nLength) {
             return sourceString;
@@ -150,7 +144,7 @@ public class StrUtils {
         return sourceString.substring(0, nLength);
     }
 
-    public static String Reverse(String strReverse) {
+    public static String reverse(String strReverse) {
         if (strReverse == null) {
             return strReverse;
         } else {
@@ -162,7 +156,7 @@ public class StrUtils {
         }
     }
 
-    public static String Right(String sourceString, int nLength) {
+    public static String right(String sourceString, int nLength) {
         if (sourceString == null || sourceString == ""
                 || sourceString.length() <= nLength) {
             return sourceString;
@@ -171,7 +165,7 @@ public class StrUtils {
                 sourceString.length());
     }
 
-    public static String Mid(String sourceString, int nStart, int nLength) {
+    public static String mid(String sourceString, int nStart, int nLength) {
         try {
             if (sourceString == null || sourceString == "") {
                 return sourceString;
@@ -180,8 +174,8 @@ public class StrUtils {
             if (nStart > Length || nStart < 0) {
                 return null;
             }
-            if ((nStart + nLength) > Length)
-                return sourceString.substring(nStart, Length);
+            if ((nStart + nLength) > Length){
+                return sourceString.substring(nStart, Length);}
             return sourceString.substring(nStart, nStart + nLength);
         } catch (Exception e) {
             System.out.println(e);
@@ -199,7 +193,6 @@ public class StrUtils {
         if (s == null || "".equals(s.trim()) || "null".equals(s.trim()) || "\"null\"".equals(s.trim())) {
             return true;
         }
-
         return false;
     }
 
@@ -217,18 +210,18 @@ public class StrUtils {
 
     public static String toSql(String str) {
         String sql = new String(str);
-        return Replace(sql, "'", "''");
+        return replace(sql, "'", "''");
     }
 
     public static String toHtmlInput(String str) {
-        if (str == null)
-            return null;
+        if (str == null){
+            return null;}
 
         String html = new String(str);
 
-        html = Replace(html, "&", "&amp;");
-        html = Replace(html, "<", "&lt;");
-        html = Replace(html, ">", "&gt;");
+        html = replace(html, "&", "&amp;");
+        html = replace(html, "<", "&lt;");
+        html = replace(html, ">", "&gt;");
 
         return html;
     }
@@ -241,10 +234,10 @@ public class StrUtils {
         String html = new String(str);
 
         html = toHtmlInput(html);
-        html = Replace(html, "\r\n", "\n");
-        html = Replace(html, "\n", "<br>");
-        html = Replace(html, "\t", "    ");
-        html = Replace(html, " ", " &nbsp;");
+        html = replace(html, "\r\n", "\n");
+        html = replace(html, "\n", "<br>");
+        html = replace(html, "\t", "    ");
+        html = replace(html, " ", " &nbsp;");
 
         return html;
     }
@@ -273,12 +266,11 @@ public class StrUtils {
      * @param params
      */
     public String getSql(String sql, Object[] params) {
-        StrUtils str = new StrUtils();
         int idx = -1;
         int i = 0;
         String tmp = sql;
         while ((idx = tmp.indexOf("?")) > -1) {
-            tmp = tmp.replaceFirst("\\?", "'" + str.toSql((String) params[i++])
+            tmp = tmp.replaceFirst("\\?", "'" + StringUtil.toSql((String) params[i++])
                     + "'");
         }
         return tmp;
@@ -596,7 +588,7 @@ public class StrUtils {
             if (val.toString().startsWith("-")) {
                 valStr = valStr.substring(1, valStr.length());
             }
-            if (StringUtils.isNumeric(valStr)) {
+            if (org.apache.commons.lang3.StringUtils.isNumeric(valStr)) {
                 return Integer.parseInt(val.toString());
             }
         } catch (Exception e) {
@@ -639,8 +631,9 @@ public class StrUtils {
      * @return
      */
     public static boolean checkTel(String tel) {
-        if (isEmpty(tel))
+        if (isEmpty(tel)){
             return false;
+        }
         String mobilephone =  "^((13[0-9])|(15[^4])|(18[0,2,3,5-9])|(17[0-8])|(147))\\d{8}$";
         Pattern pattern = Pattern.compile(mobilephone);
         Matcher matcher = pattern.matcher(tel);
@@ -649,9 +642,4 @@ public class StrUtils {
         }
         return true;
     }
-
-    public static void main(String[] args) {
-        System.out.println(checkTel("13100000001"));
-    }
-
 }
